@@ -2,7 +2,7 @@
 /**
  * Resolve cleanup
  *
- * @package backupmodx
+ * @package redirector
  * @subpackage build
  *
  * @var array $options
