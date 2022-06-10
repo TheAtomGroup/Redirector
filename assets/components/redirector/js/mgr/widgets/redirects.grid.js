@@ -113,7 +113,7 @@ Redi.grid.Redirects = function(config) {
         },'-',{
             xtype: 'textfield'
             ,id: 'redirector-search-filter'
-            ,emptyText: _('redirector.search...')
+            ,emptyText: _('redirector.search')
             ,listeners: {
                 'change': { fn: this.search ,scope: this }
                 ,'render': { fn: function(cmp) {
@@ -288,7 +288,7 @@ Redi.window.CreateUpdateRedirect = function(config) {
     this.ident = 'redi-redirect-create-update-' + Ext.id();
 
     Ext.applyIf(config,{
-        title: _('redirector.redirect_create')
+        title: (config.update) ? _('redirector.redirect_update') : _('redirector.redirect_create')
         ,url: Redi.config.connector_url
         ,baseParams: { action: ((config.update) ? 'mgr/redirect/update' : 'mgr/redirect/create') }
         ,modal: true
@@ -327,6 +327,9 @@ Redi.window.CreateUpdateRedirect = function(config) {
                             } ,scope: this
                         }
                     }
+                },{
+                    html: _('redirector.context_desc')
+                    ,style: 'padding-top:4px;'
                 },{
                     layout: 'column'
                     ,border: false
