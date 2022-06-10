@@ -285,7 +285,7 @@ Ext.reg('redirector-grid-redirects',Redi.grid.Redirects);
 
 Redi.window.CreateUpdateRedirect = function(config) {
     config = config || {};
-    this.ident = config.ident || Ext.id();
+    this.ident = 'redi-redirect-create-update-' + Ext.id();
 
     Ext.applyIf(config,{
         title: _('redirector.redirect_create')
