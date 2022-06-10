@@ -36,9 +36,9 @@ Redi.grid.Redirects = function(config) {
     Ext.applyIf(config,{
         id: 'redirector-grid-redirects'
         ,url: Redi.config.connector_url
-        ,baseParams: { action: 'mgr/redirect/getList' }
+        ,baseParams: { action: 'mgr/redirect/getlist' }
         ,fields: ['id','pattern','target','context_key','triggered','triggered_first','triggered_last','valid','failure_msg','active']
-        ,save_action: 'mgr/redirect/updateFromGrid'
+        ,save_action: 'mgr/redirect/updatefromgrid'
         ,save_callback: function(r) {
             if(!r.success) {
                 Ext.MessageBox.alert(_('error'), r.data[0].msg);
@@ -142,7 +142,7 @@ Ext.extend(Redi.grid.Redirects,MODx.grid.Grid,{
         MODx.Ajax.request({
             url: url
             ,params: {
-                action: this.config.save_action || 'updateFromGrid'
+                action: this.config.save_action || 'updatefromgrid'
                 ,data: d
             }
             ,listeners: {
@@ -214,7 +214,7 @@ Ext.extend(Redi.grid.Redirects,MODx.grid.Grid,{
         MODx.Ajax.request({
             url: Redi.config.connector_url
             ,params: {
-                action : 'mgr/redirect/updateFromGrid'
+                action : 'mgr/redirect/updatefromgrid'
                 ,data: Ext.util.JSON.encode(rowData)
             }
             ,method: 'POST'
@@ -231,7 +231,7 @@ Ext.extend(Redi.grid.Redirects,MODx.grid.Grid,{
         MODx.Ajax.request({
             url: Redi.config.connector_url
             ,params: {
-                action : 'mgr/redirect/getUrl'
+                action : 'mgr/redirect/geturl'
                 ,id: this.menu.record.id
             }
             ,method: 'GET'
