@@ -69,11 +69,8 @@ switch ($eventName) {
                         $target = rtrim($context->getOption('site_url'), '/') . '/' . (($target == '/') ? '' : ltrim($target, '/'));
                     }
                     $modx->log(modX::LOG_LEVEL_INFO, 'Redirector plugin redirecting request for ' . $search . ' to ' . $target);
-
-                    $redirect->registerTrigger();
                     
-                    $query = html_entity_decode($_SERVER['QUERY_STRING']);
-                    if (str_starts_with($query, 'q=') && str_contains($query, '&')) {
+                    if (isset($query) && strpos($query, 'q=') === 0 && strpos($query, '&') !== false) {
                       $firstValid = strpos($query, '&');
                       $query = substr($query, $firstValid + 1);
                     } else {
@@ -85,6 +82,8 @@ switch ($eventName) {
                     } else {
                       $target = $target . '?' . 'redirectfrom=/' . $search;
                     }
+
+                    $redirect->registerTrigger();
 
                     $options = array('responseCode' => 'HTTP/1.1 301 Moved Permanently');
                     $modx->sendRedirect($target, $options);
